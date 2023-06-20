@@ -30,8 +30,9 @@
 
 
     button {
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
+        margin-left:15px;
 
     }
 
@@ -67,6 +68,7 @@
         padding: 15px;
         display: flex;
        justify-content: space-between;
+        align-items: center;
 
     }
 </style>
