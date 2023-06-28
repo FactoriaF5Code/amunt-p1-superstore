@@ -2,15 +2,16 @@
 
 <script>
     import OrderStatusBadge from "./OrderStatusBadge.svelte";
-    import ButtonCancel from "./ButtonCancel.svelte";
     import {onMount} from "svelte";
+    import Modal from "./Modal.svelte";
 
-    export let onDelete;
+
     export let id;
     export let address;
     export let city;
     export let country;
     export let products = [];
+
     let productsData = []
 
     onMount(() => {
@@ -24,19 +25,21 @@
             .then(_ => console.log(productsData))
     })
 
+    let showModal = false;
+    function openModal() {showModal = true;}
+
 </script>
 
 <article>
     <section>
         <div class="pedido-envio">
                 <p>Envío: {address} - {city} ({country})</p>
-                <p> Pedido: {id.slice(0, 6)}</p>
+                <p>Pedido: {id.slice(0, 6)}</p>
             <OrderStatusBadge></OrderStatusBadge>
-                <div class="btn"
-                        on:click={() => onDelete(id)}
-                        on:keypress={() => onDelete(id)}
-                ><span class="material-symbols-outlined">cancel</span></div>
-            <ButtonCancel></ButtonCancel>
+            <button on:click={openModal}><span class="material-symbols-outlined">cancel</span></button>
+            {#if showModal}
+                <Modal></Modal>
+            {/if}
         </div>
         <div>
             <table>
@@ -102,11 +105,10 @@
     }
 
     .material-symbols-outlined{
-        font-size: 32px;
+        font-size: 28px;
         font-weight: revert;
         position: relative;
         top: 3px;
-        left: 17px;
         cursor: pointer;
     }
 </style>

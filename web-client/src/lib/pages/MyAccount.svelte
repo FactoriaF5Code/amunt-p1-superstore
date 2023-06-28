@@ -21,10 +21,9 @@
         {/each}
     {/await}
     </section>
-<div class="btn">
-    <Button on:click={logout}>Salir</Button>
-</div>
-
+    <div class="btn">
+    <Button on:click={logout}>TEST</Button>
+    </div>
 </main>
 
 <style>
