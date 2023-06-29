@@ -11,6 +11,7 @@
     export let city;
     export let country;
     export let products = [];
+    export let onCancel;
 
     let productsData = []
 
@@ -25,8 +26,6 @@
             .then(_ => console.log(productsData))
     })
 
-    let showModal = false;
-    function openModal() {showModal = true;}
 
 </script>
 
@@ -36,10 +35,7 @@
                 <p>Envío: {address} - {city} ({country})</p>
                 <p>Pedido: {id.slice(0, 6)}</p>
             <OrderStatusBadge></OrderStatusBadge>
-            <button on:click={openModal}><span class="material-symbols-outlined">cancel</span></button>
-            {#if showModal}
-                <Modal></Modal>
-            {/if}
+            <button on:click={() => onCancel(id)}><span class="material-symbols-outlined">cancel</span></button>
         </div>
         <div>
             <table>
@@ -107,8 +103,7 @@
     .material-symbols-outlined{
         font-size: 28px;
         font-weight: revert;
-        position: relative;
-        top: 3px;
         cursor: pointer;
+        color: red;
     }
 </style>

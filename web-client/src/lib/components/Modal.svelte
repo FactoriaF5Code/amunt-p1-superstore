@@ -1,28 +1,28 @@
 <script>
-    let showModal = true;
-    function closeModal() {showModal = false;}
+    export let onClose;
+    export let onConfirm;
+    export let orderId;
 </script>
 
 
-
-    {#if showModal}
-        <div class="modal">
-            <div>
-                <p>¿Está seguro de que desea cancelar el pedido ?</p>
-                <button>Confirmar</button>
-                <button on:click={closeModal}>Cerrar</button>
-            </div>
-        </div>
-    {/if}
+<div class="modal">
+    <div>
+        <p>¿Está seguro de que desea cancelar el pedido {orderId}?</p>
+        <button on:click={() => onConfirm(orderId)}>Confirmar</button>
+        <button on:click={onClose}>Cerrar</button>
+    </div>
+</div>
 
 
 <style>
-   .modal {
-        width: 400px;
-        height: 400px;
+    .modal {
+        width: 100%;
+        height: 100vh;
 
         background-color: #353535;
         position: absolute;
+        top: 0;
+        left: 0;
 
         display: flex;
         align-items: center;
@@ -33,4 +33,4 @@
         font-size: 30px;
         text-align: center;
     }
-    </style>
+</style>
