@@ -5,12 +5,14 @@
     import {onMount} from "svelte";
     import Modal from "./Modal.svelte";
 
-
     export let id;
     export let address;
     export let city;
     export let country;
     export let products = [];
+
+    export let orderStatus;
+
     export let onCancel;
 
     let productsData = []
@@ -26,7 +28,6 @@
             .then(_ => console.log(productsData))
     })
 
-
 </script>
 
 <article>
@@ -34,7 +35,7 @@
         <div class="pedido-envio">
                 <p>Envío: {address} - {city} ({country})</p>
                 <p>Pedido: {id.slice(0, 6)}</p>
-            <OrderStatusBadge></OrderStatusBadge>
+            <OrderStatusBadge {orderStatus} />
             <button on:click={() => onCancel(id)}><span class="material-symbols-outlined">cancel</span></button>
         </div>
         <div>

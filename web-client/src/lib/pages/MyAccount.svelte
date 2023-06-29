@@ -14,18 +14,15 @@
         showModal = true;
     };
 
-
-
+    let cancelOrder = (id) => {
+        // http request to update an order and mark it as CANCELLED
+        console.log(`TODO patch for order ${id}`)
+    }
 
     const api = new OrderApi();
     const logout = () => {
         loggedIn.update(_ => false);
         navigate("/", {state: {message: "Has salido de tu cuenta con éxito"}});
-    }
-
-    let cancelOrder = (id) => {
-        // http request to update an order and mark it as CANCELLED
-        console.log(`TODO patch for order ${id}`)
     }
 
 </script>
@@ -36,14 +33,14 @@
     <h1>Bienvenido {$currentUserName}</h1>
     <h2>Tus pedidos</h2>
     <section class="orders">
-    {#await api.getOrders($currentUserId) then orders}
-        {#each orders as order}
-            <Order {...order} onCancel={openModal}/>
-        {/each}
-    {/await}
+        {#await api.getOrders($currentUserId) then orders}
+            {#each orders as order}
+                <Order {...order} onCancel={openModal}/>
+            {/each}
+        {/await}
     </section>
     <div class="btn">
-    <Button on:click={logout}>Salir</Button>
+        <Button on:click={logout}>Salir</Button>
     </div>
 </main>
 
@@ -55,12 +52,13 @@
         flex-direction: column;
     }
 
-    .btn{
+    .btn {
         margin-top: 40px;
         display: flex;
         flex-direction: row-reverse;
     }
-    h1{
+
+    h1 {
         text-align: center;
     }
 </style>

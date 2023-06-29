@@ -64,5 +64,5 @@ class OrderController(
 }
 
 private fun Order.toOrderDto(): OrderDto {
-    return OrderDto(id, address, city, country, postalCode, purchases.map { it.product.id })
+    return OrderDto(id, address, city, country, postalCode, purchases.map { it.product.id }, orderStatus.toString())
 }
